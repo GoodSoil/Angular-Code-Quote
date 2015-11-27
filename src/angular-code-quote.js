@@ -31,7 +31,7 @@
       return factory;
      });
      
-     clientApp.directive('codeQuote', function($timeout, CodeQuoteFactory) {
+     cq.directive('codeQuote', function($timeout, CodeQuoteFactory) {
         return {
             restrict: 'E',
             template: '<pre><code>{{ mycode.code }}</code></pre>',
@@ -40,7 +40,7 @@
                 repo: '@'
             },
             controllerAs: 'mycode',
-            controller: function($scope, CodeQuoteFactory) {},
+            controller: function() {},
             link: {
                 pre: function(scope, element, attrs) {
                     CodeQuoteFactory.loadCode(scope.repo, codeQuoteSuccess, codeQuoteError);
