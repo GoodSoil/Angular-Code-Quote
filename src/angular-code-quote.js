@@ -18,7 +18,7 @@
        */
       function loadCode(queryString, successCallback, errorCallback) {
           if(angular.isString(queryString)) {
-              var quoteUrl = 'http://codequote.azurewebsites.net/quote' + queryString;
+              var quoteUrl = 'https://codequote.azurewebsites.net/quote' + queryString;
               if(quoteUrl) {
                   // Call code-quote
                   $http.get(quoteUrl)
@@ -31,7 +31,7 @@
       return factory;
      });
      
-     cq.directive('codeQuote', function($timeout, CodeQuoteFactory) {
+     cq.directive('codeQuote', function($timeout, apiFactory) {
         return {
             restrict: 'E',
             template: '<pre><code>{{ mycode.code }}</code></pre>',
@@ -43,7 +43,7 @@
             controller: function() {},
             link: {
                 pre: function(scope, element, attrs) {
-                    CodeQuoteFactory.loadCode(scope.repo, codeQuoteSuccess, codeQuoteError);
+                    apiFactory.loadCode(scope.repo, codeQuoteSuccess, codeQuoteError);
                     function codeQuoteSuccess(data, status, headers, config) {
                         scope.mycode.code = data.code;
                         scope.mycode.lang = data.lang;
