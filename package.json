@@ -1,0 +1,30 @@
+{
+  "name": "angular-code-quote",
+  "version": "1.0.0",
+  "description": "Angular module to use the [Code-Quote](http://codequote.azurewebsites.net/) service. Download the source code in the _src_ folder, or use the [RawGit](https://rawgit.com) url **https://cdn.rawgit.com/GoodSoil/Angular-Code-Quote/master/src/angular-code-quote.js** as your cdn (content delivery network).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodSoil/Angular-Code-Quote.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodSoil/Angular-Code-Quote/issues"
+  },
+  "homepage": "https://github.com/GoodSoil/Angular-Code-Quote#readme",
+  "dependencies": {
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "^2.0.0-rc.1",
+    "rxjs": "^5.0.0-beta.6",
+    "zone.js": "^0.6.12"
+  },
+  "devDependencies": {
+    "jasmine-core": "2.4.1",
+    "lite-server": "^2.2.0",
+    "tape": "^4.5.1"
+  }
+}
