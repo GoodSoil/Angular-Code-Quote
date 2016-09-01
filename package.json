@@ -1,6 +1,6 @@
 {
   "name": "@dagilleland/angular2-code-quote",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular 2 module to use the [Code-Quote](http://codequote.azurewebsites.net/) service. Install via npm.",
   "main": "index.js",
   "scripts": {
@@ -20,12 +20,13 @@
   },
   "homepage": "https://github.com/GoodSoil/Angular-Code-Quote#readme",
   "dependencies": {
-    "@angular/common": "^2.0.0-rc.5",
-    "@angular/compiler": "^2.0.0-rc.5",
-    "@angular/core": "2.0.0-rc.5",
-    "@angular/http": "^2.0.0-rc.5",
+    "@angular/common": "^2.0.0-rc.6",
+    "@angular/compiler": "^2.0.0-rc.6",
+    "@angular/core": "2.0.0-rc.6",
+    "@angular/http": "^2.0.0-rc.6",
+    "@angular/platform-browser": "^2.0.0-rc.6",
     "prismjs": "^1.5.1",
-    "rxjs": "5.0.0-beta.6",
+    "rxjs": "5.0.0-beta.11",
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
