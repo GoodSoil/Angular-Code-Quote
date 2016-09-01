@@ -1,0 +1,27 @@
+# dependencies
+node_modules
+
+## demo
+#showcase
+#index.html
+#upload.php
+
+# typescript
+*.ts
+!*.d.ts
+
+# git
+.git
+.gitignore
+.gitattributes
+
+# type definition
+typings
+typings.json
+
+# config
+tsconfig.json
+typings.json
+
+# misc
+*.log

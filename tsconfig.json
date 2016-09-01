@@ -1,13 +1,19 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es5",
+        "target": "es6",
         "noImplicitAny": false,
         "sourceMap": true,
-        "experimentalDecorators": true
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "declaration": true,
+        "outDir": "lib"
     },
     "files": [
+        "./src/prism-highlighter.directive.ts",
         "./src/code-quote.component.ts",
-        "./test/demo.ts"
+        "./src/code-quote.service.ts",
+        "./src/code-quote.module.ts"
     ]
 }

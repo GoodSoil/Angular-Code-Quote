@@ -1,6 +1,5 @@
-import {Component, Input, Injectable} from '@angular/core';
-import {Jsonp} from '@angular/http';
-import {AsyncSubject} from 'rxjs/Rx';
+import {Component, Input} from '@angular/core';
+import {CodeQuoteService} from './code-quote.service';
 
 interface CodeQuoteResponse {
   code: string,
@@ -16,31 +15,40 @@ interface CodeQuoteResponse {
   }
 }
 
-@Injectable()
-class CodeQuoteService{
-  constructor(private _jsonp: Jsonp) {}
-  private serviceUrl: string = 'https://codequote.azurewebsites.net/quote';
-
-  load(queryString: string) {
-    // TODO: Validation...
-    var url = this.serviceUrl + queryString;
-    // Set URLSearchParams()
-
-    return this._jsonp
-               .get(url)
-               
-  }
-}
 
 @Component({
   selector: 'code-quote',
-  template: '<pre><code>{{mycode.code}}</code></pre>',
-  providers: [CodeQuoteService]
+  template: `
+  <div *ngIf='!isLoaded'>Loading code sample...</div>
+  <pre *ngIf='isLoaded' class='line-numbers' [attr.data-start]='mycode?.request?.start'><code [attr.class]='lang' pLight>{{mycode?.code}}</code></pre>
+  `,
+  providers: [CodeQuoteService],
+  styles: ['code[class*="language"] { height: inherit; }'] // Hack for overriding prismjs linenumbers css which has the height as 100% 
 }) export class CodeQuoteComponent{
-  constructor(private _codeQuoteService: CodeQuoteService) {}
-  // Legacy attribute
   @Input() repo:string;
-  private mycode: {}
+  private mycode:any = {}
+  private lang:string = '';
+  private isLoaded:boolean = false;
 
+  constructor(private _codeQuoteService: CodeQuoteService) {}
+
+  ngOnInit() {
+    this._codeQuoteService.load(this.hashToQuerystring(this.repo)).subscribe((code:any)=>{
+      console.log(JSON.parse(code._body));
+      this.mycode = JSON.parse(code._body);
+      this.lang = 'language-' + this.mycode.lang;
+      this.isLoaded = true;
+    });
+  }
   
+  private hashToQuerystring(url:string):string {
+    var urlParts = url.split('#');
+    var urlRedirectQuery = urlParts[0];
+    if (urlParts.length > 1) {
+      var rangeParts = urlParts[1].replace('L','').split('-');
+      urlRedirectQuery += "&start=" + rangeParts[0];
+      if (rangeParts.length > 1) urlRedirectQuery += "&end=" + rangeParts[1].replace('L', '');
+    }
+    return urlRedirectQuery;
+  }
 }
